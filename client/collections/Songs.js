@@ -2,23 +2,17 @@
 var Songs = Backbone.Collection.extend({
 
   model: SongModel,
+  localStorage: new Backbone.LocalStorage('songs'),
   initialize: function(data) {
-    this.on("play", function(event) {
-    }, this);
+    // this.on("add", function(model, collection){
+    //   function
+    // }, this);
   },
 
-  localStorage: new Backbone.LocalStorage('songs'),
 
   saveAll: function(){
     this.forEach(function(item){
       item.save();
     });
   },
-
-  parse: function(data){
-    console.log(data);
-
-    return data;
-  }
-
 });

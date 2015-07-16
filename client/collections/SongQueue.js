@@ -3,13 +3,15 @@ var SongQueue = Songs.extend({
   model: SongModel,
   initialize: function(){
     this.on("add", function(event) {
-      debugger;
+      // debugger;
       event.set('isInQueue', true)
       if(this.length === 1 ) {
 
         this.playFirst();
       }
-      debugger;
+
+      this.saveAll();
+      
     }, this);
 
     this.on("dequeue", function(song) {
@@ -26,12 +28,31 @@ var SongQueue = Songs.extend({
 
     this.on('remove', function(song) {
       song.set('isInQueue', false);
+      this.saveAll();
     });
 
   },
   playFirst: function(){
       this.first().play();
     
+  },
+
+  // parse: function(data){
+  //   debugger;
+  //   console.log(data);
+  //   var newData = [];
+  //   _.each(data, function(item){
+  //     console.log(item.isInQueue);
+  //     if (item.isInQueue === true){
+  //       newData.push(item);
+  //     }
+     
+  //   });
+  //   return newData;
+  // },
+
+  save: function(){
+    this.first().save();
   }
 
 });

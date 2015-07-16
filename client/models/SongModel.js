@@ -3,6 +3,12 @@ var SongModel = Backbone.Model.extend({
   defaults: {
     isInQueue: false
   },
+
+  intitialize: function(){
+    this.on('all', function(event){
+      this.save();
+    });
+  },
   play: function(){
     // Triggering an event here will also trigger the event on the collection
     this.trigger('play', this);

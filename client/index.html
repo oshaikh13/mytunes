@@ -23,17 +23,17 @@
     <script src="views/AppView.js"></script>
 
     <script>
-    var app;
-
+    // $(function(){
+        var app;
         // set up model objects
         var library
-        if (window.localStorage.length !== 0){
-            library = new Songs();
-            library.fetch();
-        } else {
-            library = new Songs(songData);
-            library.saveAll();
-        }
+        // if (window.localStorage.l)
+        library = new Songs(songData);
+        library.saveAll();
+            // debugger;
+        library.fetch();
+            // debugger;
+        console.log("fetched from localStorage");
         
         app = new AppModel({library: library});
         
@@ -43,6 +43,7 @@
 
         // put the view onto the screen
         $('body').append(appView.render());
+    // });
     </script>
   </body>
 </html>
